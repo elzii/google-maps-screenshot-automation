@@ -47,15 +47,19 @@ grab_screenshots() {
                 end tell
                 ' 
   
-  # osascript -e 'set isFullScreen to false
-  #               tell application "System Events" to tell process "'"$SETTING_BROWSER"'"
-  #                 set isFullScreen to value of attribute "AXFullScreen" of window 1
-  #               end tell
-  #
-  #               if isFullScreen is false
-  #                 tell application "System Events" to tell process "'"$SETTING_BROWSER"'" to keystroke "f" using { command down, control down }
-  #               end if
-  #               '
+  # Toggle Fullscreen
+  # @ref - https://gist.github.com/jelder/1453585/ebf68d05aab8a4358cd2a5019a186bb1487f5005 
+  # @ref - https://gist.github.com/dsummersl/4175461
+  osascript -e 'set isFullScreen to false
+                tell application "System Events" to tell process "'"$SETTING_BROWSER"'"
+                  set isFullScreen to value of attribute "AXFullScreen" of window 1
+                end tell
+
+                if isFullScreen is false then
+                  tell application "System Events" to tell process "'"$SETTING_BROWSER"'" to keystroke "f" using { command down, control down }
+                end if
+                '
+
 
   # Open JS Console, paste script, hit return, close JS console
   osascript -e 'tell application "System Events" to tell process "'"$SETTING_BROWSER"'" to keystroke "j" using {command down, option down}
