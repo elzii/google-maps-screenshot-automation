@@ -37,26 +37,25 @@ center_mouse() {
 # Perform Automation
 grab_screenshots() {
   # Activate Browser
-  # osascript -e 'tell application "'"$SETTING_BROWSER"'" to activate'
-
+  # osascript -e 'tell application "'"$SETTING_BROWSER"'" to activate' 
   # Activate Browser, toggle fullscreen, and open URL 
   osascript -e 'tell application "'"$SETTING_BROWSER"'"
                   activate
-                  set isFullScreen to false
-                  tell application "System Events" to tell process "'"$SETTING_BROWSER"'"
-                    set isFullScreen to value of attribute "AXFullScreen" of window 1
-                  end tell
-
-                  if isFullScreen is false
-                    tell application "System Events" to tell process "'"$SETTING_BROWSER"'" to keystroke "f" using { command down, control down }
-                  end if
-                  
                   open location "'"$SETTING_GOOGLE_MAPS_URL"'"
                   delay 1
                   activate
                 end tell
                 ' 
-  exit 0
+  
+  # osascript -e 'set isFullScreen to false
+  #               tell application "System Events" to tell process "'"$SETTING_BROWSER"'"
+  #                 set isFullScreen to value of attribute "AXFullScreen" of window 1
+  #               end tell
+  #
+  #               if isFullScreen is false
+  #                 tell application "System Events" to tell process "'"$SETTING_BROWSER"'" to keystroke "f" using { command down, control down }
+  #               end if
+  #               '
 
   # Open JS Console, paste script, hit return, close JS console
   osascript -e 'tell application "System Events" to tell process "'"$SETTING_BROWSER"'" to keystroke "j" using {command down, option down}
