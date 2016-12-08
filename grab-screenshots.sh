@@ -1,14 +1,21 @@
 #!/bin/bash
 
+# Caveats
+# Use CMD+SHIFT+F to toggle off address bar in fullscreen mode in chrome before running
+
+
 # Vars
 IN=$1
 OUT=$(echo $1 | sed 's/^\(.*\)\.[a-zA-Z0-9]*$/\1/')
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+
 # Settings
 SETTING_BROWSER="Google Chrome Canary"
-SETTING_SCREENSHOT_COUNT=1
-SETTING_GOOGLE_MAPS_URL="https://www.google.com/maps/@32.7082517,-117.1588805,12010m/data=!3m1!1e3"
+SETTING_SCREENSHOT_COUNT=3
+# SETTING_GOOGLE_MAPS_URL="https://www.google.com/maps/@32.7082517,-117.1588805,12010m/data=!3m1!1e3"
+SETTING_GOOGLE_MAPS_URL="https://www.google.com/maps/@40.7451691,-73.9884621,69415m/data=!3m1!1e3"
+
 
 # Make output folder if it doesnt exist
 [ ! -d $DIR/out ] && mkdir -p $DIR/out
@@ -36,13 +43,14 @@ center_mouse() {
 
 # Perform Automation
 grab_screenshots() {
+  
   # Activate Browser
   # osascript -e 'tell application "'"$SETTING_BROWSER"'" to activate' 
   # Activate Browser, toggle fullscreen, and open URL 
   osascript -e 'tell application "'"$SETTING_BROWSER"'"
                   activate
                   open location "'"$SETTING_GOOGLE_MAPS_URL"'"
-                  delay 1
+                  delay 5
                   activate
                 end tell
                 ' 
